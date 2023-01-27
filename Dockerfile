@@ -3,7 +3,7 @@ FROM php:8.1-alpine
 ENV ROADMAPVERSION=1.36
 
 # Install Laravel framework system requirements (https://laravel.com/docs/8.x/deployment#optimizing-configuration-loading)
-RUN apk add oniguruma-dev postgresql-dev libxml2-dev
+RUN apk add oniguruma-dev postgresql-dev libxml2-dev wget
 RUN apk add npm
 RUN npm cache clean -f
 RUN npm install -g n
