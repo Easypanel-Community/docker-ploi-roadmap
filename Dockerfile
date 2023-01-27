@@ -1,4 +1,4 @@
-FROM php:8.1-apache
+FROM phpdocker/phpdocker:8.1
 
 ENV ROADMAPVERSION=1.36
 
