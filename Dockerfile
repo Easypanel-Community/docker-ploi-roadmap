@@ -1,4 +1,4 @@
-FROM erseco/alpine-php-webserver
+FROM FROM php:8.1-apache
 
 ENV ROADMAPVERSION=1.36
 
