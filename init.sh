@@ -43,5 +43,4 @@ npm run production
 echo -e "[INFO] To Finish Setup, Run php artisan roadmap:install and type yes for everything"
 echo -e "[INFO] Running On Port 9000"
 
-EXPOSE 9000
-CMD php artisan serve --host=0.0.0.0 --port=9000
+php artisan serve --host=0.0.0.0 --port=9000
