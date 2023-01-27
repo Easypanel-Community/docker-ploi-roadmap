@@ -1,4 +1,4 @@
-FROM webdevops/php-nginx:8.1-alpine
+FROM php:8.1-alpine
 
 ENV ROADMAPVERSION=1.36
 
