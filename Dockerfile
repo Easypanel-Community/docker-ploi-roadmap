@@ -35,3 +35,5 @@ RUN chown -R application:application .
 
 VOLUME /app
 VOLUME /vendor
+
+EXPOSE 9000
