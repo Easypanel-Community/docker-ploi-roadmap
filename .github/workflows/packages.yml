@@ -35,7 +35,7 @@ jobs:
         id: builder-meta
         uses: docker/metadata-action@v4
         with:
-          images: ghcr.io/drmxrcy/docker-ploi-roadmap
+          images: ghcr.io/easypanel-community/docker-ploi-roadmap
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
