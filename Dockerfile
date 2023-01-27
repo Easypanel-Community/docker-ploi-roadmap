@@ -1,4 +1,4 @@
-FROM trafex/php-nginx
+FROM erseco/alpine-php-webserver
 
 ENV ROADMAPVERSION=1.36
 
