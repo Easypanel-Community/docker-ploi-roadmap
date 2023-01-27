@@ -1,4 +1,4 @@
-FROM php:8.1-alpine
+FROM trafex/php-nginx
 
 ENV ROADMAPVERSION=1.36
 
