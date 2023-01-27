@@ -33,3 +33,5 @@ COPY init.sh /opt/docker/provision/entrypoint.d/99-init.sh
 
 RUN chown -R application:application .
 
+VOLUME /app
+VOLUME /vendor
