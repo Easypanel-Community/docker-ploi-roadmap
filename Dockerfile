@@ -14,10 +14,6 @@ RUN apt-get update && \
 RUN apt-get install -y wget
 RUN apt-get install libpq-dev
 
-# Configure GD
-
-RUN docker-php-ext-configure gd --enable-gd \
-	--with-jpeg --with-webp --with-xpm --with-freetype; \
 
 # Enable mod_rewrite
 RUN a2enmod rewrite
