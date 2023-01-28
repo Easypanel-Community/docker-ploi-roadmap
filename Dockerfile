@@ -8,7 +8,8 @@ RUN apt-get update && \
     libzip-dev \
     zip \
     npm \
-    postgresql
+    postgresql \
+    oniguruma-dev
     
 RUN apt-get install -y wget
 RUN apt-get install libpq-dev
