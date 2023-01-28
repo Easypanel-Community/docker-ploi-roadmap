@@ -29,8 +29,8 @@ RUN mkdir app
 # Install laravel requirements + package
 RUN wget https://github.com/ploi-deploy/roadmap/archive/refs/tags/${ROADMAPVERSION}.zip \
     && unzip ${ROADMAPVERSION}.zip \
-    && mv roadmap-${ROADMAPVERSION}/* /app \
-    && chmod +x /app
+    && mv roadmap-${ROADMAPVERSION}/* /public \
+    && chmod +x /public
 
 # Copy the application code
 COPY . /var/www/html
