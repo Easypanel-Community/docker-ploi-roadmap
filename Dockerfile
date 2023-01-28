@@ -38,9 +38,6 @@ COPY . /var/www/html
 # Set the working directory
 WORKDIR /var/www/html
 
-# Copy Composer binary from the Composer official Docker image
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
 # Install project dependencies
 RUN composer install
 
