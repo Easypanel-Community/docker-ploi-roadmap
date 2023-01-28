@@ -51,12 +51,10 @@ RUN docker-php-ext-install \
 COPY init.sh /opt/docker/provision/entrypoint.d/99-init.sh
 
 ENV APP_ENV production
-WORKDIR /app
 
 ENV WEB_DOCUMENT_ROOT /app/public
 
 VOLUME /var/www/html
-VOLUME /app
 VOLUME /vendor
 
 EXPOSE 9000
