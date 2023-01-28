@@ -11,6 +11,7 @@ RUN apt-get update && \
     postgresql
     
 RUN apt-get install -y wget
+RUN apt-get install php-pgsql
 
 # Enable mod_rewrite
 RUN a2enmod rewrite
