@@ -45,7 +45,6 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 RUN npm cache clean -f
 RUN npm install -g n
 RUN docker-php-ext-install \
-                   mbstring \
                    xml
 
 
