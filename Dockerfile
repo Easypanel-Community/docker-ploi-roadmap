@@ -9,7 +9,13 @@ RUN apt-get update && \
     zip \
     npm \
     postgresql \
-    libxml2-dev
+    libxml2-dev \
+    zlib1g-dev \
+    libpng-dev \
+    libjpeg-dev \
+	libwebp-dev  \
+    libxpm-dev \
+    libfreetype6-dev
     
 RUN apt-get install -y wget
 RUN apt-get install libpq-dev
