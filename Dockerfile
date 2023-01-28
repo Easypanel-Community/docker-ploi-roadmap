@@ -20,12 +20,16 @@ RUN apt-get update && \
 RUN apt-get install -y wget
 RUN apt-get install libpq-dev
 
+RUN apt-get update && \
+apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev && \
+docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ && \
+docker-php-ext-install gd
 
 # Enable mod_rewrite
 RUN a2enmod rewrite
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo_mysql zip pdo_pgsql intl sockets gd
+RUN docker-php-ext-install pdo_mysql zip pdo_pgsql intl sockets
 
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
