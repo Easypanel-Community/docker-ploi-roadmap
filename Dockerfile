@@ -73,5 +73,3 @@ EXPOSE 9000
 RUN composer install
 
 RUN npm ci
-
-RUN npm run build
