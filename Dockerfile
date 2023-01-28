@@ -65,4 +65,3 @@ EXPOSE 9000
 
 COPY init.sh /docker/
 
-CMD ["docker/init.sh"]
