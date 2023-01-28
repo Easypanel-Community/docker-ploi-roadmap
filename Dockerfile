@@ -10,7 +10,7 @@ RUN apt-get update && \
     npm \
     oniguruma-dev \
     postgresql-dev 
-    libxml2-dev \
+    libxml-dev \
     wget \
     unzip
     
