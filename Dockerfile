@@ -62,7 +62,3 @@ VOLUME /vendor
 EXPOSE 9000
 
 # init
-
-COPY init.sh .
-CMD [‘./init.sh’]
-
