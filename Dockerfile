@@ -50,6 +50,8 @@ RUN docker-php-ext-install \
 
 COPY init.sh /opt/docker/provision/entrypoint.d/99-init.sh
 
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 ENV APP_ENV production
 
 ENV WEB_DOCUMENT_ROOT /app/public
