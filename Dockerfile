@@ -67,3 +67,9 @@ VOLUME /vendor
 EXPOSE 9000
 
 # init
+
+RUN composer install
+
+RUN npm ci
+
+RUN npm run build
