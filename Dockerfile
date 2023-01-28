@@ -11,7 +11,6 @@ RUN apt-get update && \
     postgresql
     
 RUN apt-get install -y wget
-RUN apt-get install php-pgsql
 RUN apt-get install libpq-dev
 
 # Enable mod_rewrite
