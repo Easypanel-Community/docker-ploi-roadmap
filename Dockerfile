@@ -38,9 +38,6 @@ COPY . /var/www/html
 # Set the working directory
 WORKDIR /var/www/html
 
-# Install project dependencies
-RUN composer install
-
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
