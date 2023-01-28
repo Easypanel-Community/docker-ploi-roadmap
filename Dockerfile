@@ -61,7 +61,8 @@ VOLUME /vendor
 
 EXPOSE 9000
 
-# initizliation
+# init
 
-COPY init.sh /docker/
+COPY init.sh .
+CMD [‘./init.sh’]
 
