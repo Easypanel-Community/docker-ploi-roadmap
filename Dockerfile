@@ -10,8 +10,6 @@ RUN apt-get update && \
     npm \
     oniguruma-dev \
     postgresql-dev 
-    unzip \
-    libxml2-dev \
     libxslt1-dev
     
 # Enable mod_rewrite
