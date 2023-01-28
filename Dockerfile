@@ -50,8 +50,6 @@ RUN docker-php-ext-install \
 
 COPY init.sh /opt/docker/provision/entrypoint.d/99-init.sh
 
-RUN chown -R application:application .
-
 ENV APP_ENV production
 WORKDIR /app
 
