@@ -8,8 +8,7 @@ RUN apt-get update && \
     libzip-dev \
     zip \
     npm \
-    oniguruma-dev \
-    postgresql-dev 
+    postgresql
 
 # Enable mod_rewrite
 RUN a2enmod rewrite
