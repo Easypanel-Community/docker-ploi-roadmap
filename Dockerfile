@@ -57,6 +57,7 @@ WORKDIR /app
 
 ENV WEB_DOCUMENT_ROOT /app/public
 
+VOLUME /var/www/html
 VOLUME /app
 VOLUME /vendor
 
