@@ -63,33 +63,6 @@ EXPOSE 9000
 
 # initizliation
 
-RUN echo -e "[INFO] Getting Ready"
+COPY init.sh /docker/
 
-RUN sleep 5
-
-RUN echo -e "[INFO] Initializing App"
-
-RUN echo -e "[INFO] Install Composer Packages"
-
-RUN composer install --no-interaction --optimize-autoloader --no-dev
-
-RUN echo -e "[INFO] Clearing Config Cache"
-
-RUN php artisan config:cache
-
-RUN echo -e "[INFO] Clearing Route Cache"
-RUN php artisan route:cache 
-
-RUN echo -e "[INFO] Clearing View Cache"
-RUN php artisan view:clear 
-
-RUN echo -e "[INFO] Migrating Database"
-RUN php artisan migrate 
-
-RUN echo -e "[INFO] Run NPM CI"
-RUN npm ci
-
-RUN echo -e "[INFO] Run NPM Production"
-RUN npm run production
-
-RUN echo -e "[INFO] To Finish Setup, Run php artisan roadmap:install and type yes for everything"
+CMD ["docker/init.sh"]
