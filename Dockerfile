@@ -8,7 +8,8 @@ RUN apt-get update && \
     libzip-dev \
     zip \
     npm \
-    postgresql 
+    postgresql \
+    libxml2-dev
     
 RUN apt-get install -y wget
 RUN apt-get install libpq-dev
