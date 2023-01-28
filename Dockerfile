@@ -60,4 +60,4 @@ VOLUME /var/www/html
 VOLUME /vendor
 
 EXPOSE 9000
-CMD ['docker/init.sh']
+CMD ["docker/init.sh"]
