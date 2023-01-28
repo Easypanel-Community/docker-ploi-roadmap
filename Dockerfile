@@ -14,11 +14,16 @@ RUN apt-get update && \
 RUN apt-get install -y wget
 RUN apt-get install libpq-dev
 
+# Configure GD
+
+RUN docker-php-ext-configure gd --enable-gd \
+	--with-jpeg --with-webp --with-xpm --with-freetype; \
+
 # Enable mod_rewrite
 RUN a2enmod rewrite
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo_mysql zip pdo_pgsql intl sockets
+RUN docker-php-ext-install pdo_mysql zip pdo_pgsql intl sockets gd
 
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
