@@ -1,4 +1,5 @@
 FROM composer AS application_builder
+ENV ROADMAPVERSION=1.42
 
 RUN wget https://github.com/ploi-deploy/roadmap/archive/refs/tags/${ROADMAPVERSION}.zip \
     && unzip ${ROADMAPVERSION}.zip \
@@ -11,8 +12,6 @@ RUN mkdir -p storage/framework/cache \
     && mkdir -p storage/framework/views \
     && mkdir -p storage/framework/sessions \
     && composer install --optimize-autoloader --no-devFROM node:17.4-alpine As asset_builder
-
-ENV ROADMAPVERSION=1.42
 
 ENV APP_ENV production
 
