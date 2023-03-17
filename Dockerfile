@@ -1,8 +1,8 @@
+FROM node:17.4-alpine As asset_builder
+
 ENV ROADMAPVERSION=1.42
 
 ENV APP_ENV production
-
-FROM node:17.4-alpine As asset_builder
 
 RUN wget https://github.com/ploi-deploy/roadmap/archive/refs/tags/${ROADMAPVERSION}.zip \
     && unzip ${ROADMAPVERSION}.zip \
