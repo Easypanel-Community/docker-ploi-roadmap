@@ -1,5 +1,3 @@
-FROM formatdgmbh/webdevops-php-apache-dev:8.1
-
 ENV ROADMAPVERSION=1.42
 
 ENV APP_ENV production
