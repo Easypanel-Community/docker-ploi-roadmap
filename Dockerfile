@@ -2,37 +2,56 @@ FROM formatdgmbh/webdevops-php-apache-dev:8.1
 
 ENV ROADMAPVERSION=1.42
 
+ENV APP_ENV production
 
-# Install Laravel framework system requirements (https://laravel.com/docs/8.x/deployment#optimizing-configuration-loading)
-RUN apk add oniguruma-dev postgresql-dev libxml2-dev
-RUN apk add npm
-RUN npm cache clean -f
-RUN npm install -g n
-RUN docker-php-ext-install \
-        ctype \
-        fileinfo \
-        mbstring \
-        xml
-
-# Copy Composer binary from the Composer official Docker image
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-ENV WEB_DOCUMENT_ROOT /app/public
+FROM node:17.4-alpine As asset_builder
 
 RUN wget https://github.com/ploi-deploy/roadmap/archive/refs/tags/${ROADMAPVERSION}.zip \
     && unzip ${ROADMAPVERSION}.zip \
     && mv roadmap-${ROADMAPVERSION}/* /app \
     && chmod +x /app
-
-ENV APP_ENV production
+    
 WORKDIR /app
 
-COPY ./nginx/10-location-root.conf /opt/docker/etc/nginx/vhost.common.d/
-COPY ./nginx/app.conf /opt/docker/etc/nginx/vhost.common.d/
+RUN npm install \
+    && npm run build
 
-COPY init.sh /opt/docker/provision/entrypoint.d/99-init.sh
 
-RUN chown -R application:application .
+FROM php:fpm-alpine
+WORKDIR /var/www/html
+
+# Use the default production configuration
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
+    && docker-php-ext-install pdo_mysql \
+    && docker-php-ext-install mysqli \
+    && docker-php-ext-install opcache \
+    && apk add --no-cache \
+    mariadb-client \
+    sqlite \
+    nginx
+
+COPY . ./
+
+COPY --from=application_builder /app/vendor ./vendor
+COPY --from=application_builder /app/bootstrap/cache ./bootstrap/cache
+
+COPY --from=asset_builder /app/public/build ./public/build
+
+RUN mkdir ./database/sqlite \
+    && chown -R www-data: /var/www/html \
+    && rm -rf ./docker
+
+COPY ./docker/config/ploiroadmap-php.ini /usr/local/etc/php/conf.d/ploiroadmap-php.ini
+COPY ./docker/config/nginx.conf /etc/nginx/nginx.conf
+COPY ./docker/config/site-nginx.conf /etc/nginx/http.d/default.conf
+
+CMD ["chmod +x ./docker-entrypoint.sh"]
+
+EXPOSE 80
 
 VOLUME /app
 VOLUME /vendor
+
+RUN chown -R application:application .
+
+CMD ["./init.sh"]
