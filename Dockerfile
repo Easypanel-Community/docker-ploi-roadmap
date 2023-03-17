@@ -11,7 +11,9 @@ WORKDIR /app
 RUN mkdir -p storage/framework/cache \
     && mkdir -p storage/framework/views \
     && mkdir -p storage/framework/sessions \
-    && composer install --optimize-autoloader --no-devFROM node:17.4-alpine As asset_builder
+    && composer install --optimize-autoloader --no-dev
+    
+FROM node:17.4-alpine As asset_builder
 
 ENV APP_ENV production
 
