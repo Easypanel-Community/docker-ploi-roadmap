@@ -1,9 +1,9 @@
 FROM composer AS application_builder
 ENV ROADMAPVERSION=1.42
 
-RUN wget https://github.com/ploi-deploy/roadmap/archive/refs/tags/${ROADMAPVERSION}.zip \
-    && unzip ${ROADMAPVERSION}.zip \
-    && mv roadmap-${ROADMAPVERSION}/* /app \
+RUN wget https://github.com/ploi-deploy/roadmap/archive/refs/tags/1.42.zip \
+    && unzip 1.42.zip \
+    && mv roadmap-1.42/* /app \
     && chmod +x /app
     
 WORKDIR /app
@@ -15,9 +15,9 @@ RUN mkdir -p storage/framework/cache \
 
 ENV APP_ENV production
 
-RUN wget https://github.com/ploi-deploy/roadmap/archive/refs/tags/${ROADMAPVERSION}.zip \
-    && unzip ${ROADMAPVERSION}.zip \
-    && mv roadmap-${ROADMAPVERSION}/* /app \
+RUN wget https://github.com/ploi-deploy/roadmap/archive/refs/tags/1.42.zip \
+    && unzip 1.42.zip \
+    && mv roadmap-1.42/* /app \
     && chmod +x /app
 
 
