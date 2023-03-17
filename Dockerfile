@@ -38,6 +38,8 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
     && docker-php-ext-install pdo_mysql \
     && docker-php-ext-install mysqli \
     && docker-php-ext-install opcache \
+    && docker-php-ext-install intl \
+    && docker-php-ext-install sockets \
     && apk add --no-cache \
     mariadb-client \
     sqlite \
