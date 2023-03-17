@@ -8,6 +8,23 @@ RUN wget https://github.com/ploi-deploy/roadmap/archive/refs/tags/1.42.zip \
     
 WORKDIR /app
 
+FROM php:fpm-alpine
+WORKDIR /var/www/html
+
+# Use the default production configuration
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
+    && docker-php-ext-install pdo_mysql \
+    && docker-php-ext-install mysqli \
+    && docker-php-ext-install opcache \
+    && docker-php-ext-install intl \
+    && docker-php-ext-install sockets \
+    && apk add --no-cache \
+    mariadb-client \
+    sqlite \
+    nginx
+    
+FROM composer AS application_builder
+
 RUN mkdir -p storage/framework/cache \
     && mkdir -p storage/framework/views \
     && mkdir -p storage/framework/sessions \
@@ -33,19 +50,7 @@ RUN npm install \
 FROM php:fpm-alpine
 WORKDIR /var/www/html
 
-# Use the default production configuration
-RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
-    && docker-php-ext-install pdo_mysql \
-    && docker-php-ext-install mysqli \
-    && docker-php-ext-install opcache \
-    && docker-php-ext-install intl \
-    && docker-php-ext-install sockets \
-    && apk add --no-cache \
-    mariadb-client \
-    sqlite \
-    nginx
-
-COPY . ./
+# later
 
 COPY --from=application_builder /app/vendor ./vendor
 COPY --from=application_builder /app/bootstrap/cache ./bootstrap/cache
