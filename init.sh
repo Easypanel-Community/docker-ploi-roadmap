@@ -31,7 +31,7 @@ echo -e "[INFO] Clearing View Cache"
 php artisan view:clear 
 
 echo -e "[INFO] Migrating Database"
-php artisan migrate 
+php artisan migrate --no-interaction --force
 
 echo -e "[INFO] Run NPM CI"
 npm ci
